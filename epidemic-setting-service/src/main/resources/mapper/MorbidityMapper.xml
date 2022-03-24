@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myq.epidemic_sys.setting.mapper.MorbidityMapper">
+
+    <resultMap type="com.myq.epidemic_sys.setting.entity.Morbidity" id="MorbidityMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="patientId" column="patient_id" jdbcType="INTEGER"/>
+        <result property="creatDate" column="creat_date" jdbcType="DATE"/>
+        <result property="situationCon" column="situation_con" jdbcType="VARCHAR"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+<!--    <select id="queryById" resultMap="MorbidityMap">-->
+<!--        select-->
+<!--          id, patient_id, creat_date, situation_con, remarks-->
+<!--        from morbidity-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+    <!--查询指定行数据-->
+<!--    <select id="queryAllByLimit" resultMap="MorbidityMap">-->
+<!--        select-->
+<!--          id, patient_id, creat_date, situation_con, remarks-->
+<!--        from morbidity-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="patientId != null">-->
+<!--                and patient_id = #{patientId}-->
+<!--            </if>-->
+<!--            <if test="creatDate != null">-->
+<!--                and creat_date = #{creatDate}-->
+<!--            </if>-->
+<!--            <if test="situationCon != null and situationCon != ''">-->
+<!--                and situation_con = #{situationCon}-->
+<!--            </if>-->
+<!--            <if test="remarks != null and remarks != ''">-->
+<!--                and remarks = #{remarks}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        limit #{pageable.offset}, #{pageable.pageSize}-->
+<!--    </select>-->
+
+    <!--统计总行数-->
+<!--    <select id="count" resultType="java.lang.Long">-->
+<!--        select count(1)-->
+<!--        from morbidity-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="patientId != null">-->
+<!--                and patient_id = #{patientId}-->
+<!--            </if>-->
+<!--            <if test="creatDate != null">-->
+<!--                and creat_date = #{creatDate}-->
+<!--            </if>-->
+<!--            <if test="situationCon != null and situationCon != ''">-->
+<!--                and situation_con = #{situationCon}-->
+<!--            </if>-->
+<!--            <if test="remarks != null and remarks != ''">-->
+<!--                and remarks = #{remarks}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <!--新增所有列-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into morbidity(patient_id, creat_date, situation_con, remarks)-->
+<!--        values (#{patientId}, #{creatDate}, #{situationCon}, #{remarks})-->
+<!--    </insert>-->
+
+<!--    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into morbidity(patient_id, creat_date, situation_con, remarks)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--        (#{entity.patientId}, #{entity.creatDate}, #{entity.situationCon}, #{entity.remarks})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into morbidity(patient_id, creat_date, situation_con, remarks)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--            (#{entity.patientId}, #{entity.creatDate}, #{entity.situationCon}, #{entity.remarks})-->
+<!--        </foreach>-->
+<!--        on duplicate key update-->
+<!--        patient_id = values(patient_id),-->
+<!--        creat_date = values(creat_date),-->
+<!--        situation_con = values(situation_con),-->
+<!--        remarks = values(remarks)-->
+<!--    </insert>-->
+
+    <!--通过主键修改数据-->
+<!--    <update id="update">-->
+<!--        update morbidity-->
+<!--        <set>-->
+<!--            <if test="patientId != null">-->
+<!--                patient_id = #{patientId},-->
+<!--            </if>-->
+<!--            <if test="creatDate != null">-->
+<!--                creat_date = #{creatDate},-->
+<!--            </if>-->
+<!--            <if test="situationCon != null and situationCon != ''">-->
+<!--                situation_con = #{situationCon},-->
+<!--            </if>-->
+<!--            <if test="remarks != null and remarks != ''">-->
+<!--                remarks = #{remarks},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+    <!--通过主键删除-->
+<!--    <delete id="deleteById">-->
+<!--        delete from morbidity where id = #{id}-->
+<!--    </delete>-->
+
+    <select id="selectByPage" parameterType="com.myq.epidemic_sys.setting.entity.Morbidity"
+            resultMap="MorbidityMap" >
+        select *
+        from morbidity as m
+        <where>
+            <if test="param.patientId != null ">
+                and patient_id = #{param.patientId}
+            </if>
+            <if test="param.creatDate != null ">
+                and creat_date = #{param.creatDate}
+            </if>
+            <if test="param.remarks != null and param.remarks != '' ">
+                and remarks like CONCAT('%',#{param.remarks},'%')
+            </if>
+            <if test="param.situationCon != null and param.situationCon != '' ">
+                and situation_con like CONCAT('%',#{param.situationCon},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
+

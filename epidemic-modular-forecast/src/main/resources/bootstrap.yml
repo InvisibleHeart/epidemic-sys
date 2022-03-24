@@ -1,0 +1,26 @@
+
+spring:
+  profiles:
+    active: test
+  cloud:
+    nacos:
+      config:
+        server-addr: 139.196.55.213:8848
+        group: DEFAULT_GROUP
+        file-extension: yaml
+      discovery:
+        server-addr: 139.196.55.213:8848
+        group: DEFAULT_GROUP
+  application:
+    name: epidemic-modular-forecast
+  main:
+    allow-bean-definition-overriding: true
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

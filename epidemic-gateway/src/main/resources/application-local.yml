@@ -1,0 +1,35 @@
+server:
+  port: 19090
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: epidemic-setting-service # 路由的id,没有规定规则但要求唯一,建议配合服务名
+            #匹配后提供服务的路由地址
+         # uri: http://127.0.0.1:9092
+          uri: lb://epidemic-setting-service
+          predicates:
+            - Path=/setting/** # 断言，路径相匹配的进行路由
+          filters:
+            # 去除的路径前缀的个数(strip)
+            - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+#      globalcors:
+#        cors-configurations:    # 全局的跨网域处理
+#          '[/**]':
+#            allowCredentials: true          # 是否允许携带cookie
+#            allowedOriginPatterns: "*"      # 允许哪些网站的跨网域请求
+#            allowedHeaders: "*"             # 允许请求中携带的头信息
+#            allowedMethods:
+#              - "OPTIONS"
+#              - "GET"
+#              - "POST"
+#              - "PUT"
+#              - "DELETE"
+#            maxAge: 36000           # 跨网域检查的有效时间
+#        add-to-simple-url-handler-mapping: true   # 解决options请求被拦截问题
+
+
+

@@ -1,0 +1,104 @@
+server:
+  port: 19092
+
+  #---------------数据库连接配置--------------
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #serverTimezone=UTC 设置数据库时区,MySQL默认安装时是使用的美国时区
+    url:
+    username:
+    password:
+    #自动往数据库建表
+    #    schema:
+    #      - classpath:department.sql
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  ##### 缓存  ####
+  cache:
+    type: redis
+  ######## redis #########
+  redis:
+    database: 0
+    password: myq123
+    port: 6379
+    host: 139.196.55.213
+
+    jedis:
+      pool:
+        max-active: 200
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 表示连接池的链接拿完了 现在去申请需要等待的时间
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+      # 连接超时时间（毫秒） 去链接redis服务端
+      timeout: 6000
+
+
+# Mybatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage:
+  #typeEnumsPackage: com.fendo.mybatis.plus.entity.enums
+  #  global-config:
+  #    id-type: 2
+  #    field-strategy: 2
+  #    db-column-underline: true
+  #    refresh-mapper: true
+  #    #capital-mode: true
+  #    #key-generator: com.baomidou.springboot.xxx
+  #    logic-delete-value: 0
+  #    logic-not-delete-value: 1
+  #    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  #    #meta-object-handler: com.baomidou.springboot.xxx
+  #    #sql-injector: com.baomidou.springboot.xxx
+  #  configuration:
+  #    map-underscore-to-camel-case: true
+  #    cache-enabled: false
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+###############
+#   多线程配置
+#############
+executor:
+  CorePoolSize: 8
+  MaxPoolSize: 8
+  QueueCapacity: 200
+  KeepAliveSeconds: 3000
+  ThreadNamePrefix: callybxWork -
+  taskCallSize: 10
+
+##### fegin #####
+feign:
+  httpclient:
+    enabled: true # 支持HttpClient的开关
+    max-connections: 200 # 最大连接数
+    max-connections-per-route: 50 # 单个路径的最大连接数

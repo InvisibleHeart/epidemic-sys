@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myq.epidemic_sys.setting.mapper.PatientMapper">
+
+    <resultMap type="com.myq.epidemic_sys.setting.entity.Patient" id="PatientMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="VARCHAR"/>
+        <result property="weight" column="weight" jdbcType="VARCHAR"/>
+        <result property="source" column="source" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="regionId" column="region_id" jdbcType="INTEGER"/>
+        <result property="identityCard" column="identity_card" jdbcType="VARCHAR"/>
+        <result property="crowd" column="crowd" jdbcType="INTEGER"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="cellphone" column="cellphone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+<!--    <select id="queryById" resultMap="PatientMap">-->
+<!--        select-->
+<!--          id, name, sex, age, height, weight, source, status, region_id, identity_card, crowd, update_date, cellphone-->
+<!--        from patient-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+    <!--查询指定行数据-->
+<!--    <select id="queryAllByLimit" resultMap="PatientMap">-->
+<!--        select-->
+<!--          id, name, sex, age, height, weight, source, status, region_id, identity_card, crowd, update_date, cellphone-->
+<!--        from patient-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                and name = #{name}-->
+<!--            </if>-->
+<!--            <if test="sex != null">-->
+<!--                and sex = #{sex}-->
+<!--            </if>-->
+<!--            <if test="age != null">-->
+<!--                and age = #{age}-->
+<!--            </if>-->
+<!--            <if test="height != null and height != ''">-->
+<!--                and height = #{height}-->
+<!--            </if>-->
+<!--            <if test="weight != null and weight != ''">-->
+<!--                and weight = #{weight}-->
+<!--            </if>-->
+<!--            <if test="source != null and source != ''">-->
+<!--                and source = #{source}-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                and status = #{status}-->
+<!--            </if>-->
+<!--            <if test="regionId != null">-->
+<!--                and region_id = #{regionId}-->
+<!--            </if>-->
+<!--            <if test="identityCard != null and identityCard != ''">-->
+<!--                and identity_card = #{identityCard}-->
+<!--            </if>-->
+<!--            <if test="crowd != null">-->
+<!--                and crowd = #{crowd}-->
+<!--            </if>-->
+<!--            <if test="updateDate != null">-->
+<!--                and update_date = #{updateDate}-->
+<!--            </if>-->
+<!--            <if test="cellphone != null and cellphone != ''">-->
+<!--                and cellphone = #{cellphone}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        limit #{pageable.offset}, #{pageable.pageSize}-->
+<!--    </select>-->
+
+    <!--统计总行数-->
+<!--    <select id="count" resultType="java.lang.Long">-->
+<!--        select count(1)-->
+<!--        from patient-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                and name = #{name}-->
+<!--            </if>-->
+<!--            <if test="sex != null">-->
+<!--                and sex = #{sex}-->
+<!--            </if>-->
+<!--            <if test="age != null">-->
+<!--                and age = #{age}-->
+<!--            </if>-->
+<!--            <if test="height != null and height != ''">-->
+<!--                and height = #{height}-->
+<!--            </if>-->
+<!--            <if test="weight != null and weight != ''">-->
+<!--                and weight = #{weight}-->
+<!--            </if>-->
+<!--            <if test="source != null and source != ''">-->
+<!--                and source = #{source}-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                and status = #{status}-->
+<!--            </if>-->
+<!--            <if test="regionId != null">-->
+<!--                and region_id = #{regionId}-->
+<!--            </if>-->
+<!--            <if test="identityCard != null and identityCard != ''">-->
+<!--                and identity_card = #{identityCard}-->
+<!--            </if>-->
+<!--            <if test="crowd != null">-->
+<!--                and crowd = #{crowd}-->
+<!--            </if>-->
+<!--            <if test="updateDate != null">-->
+<!--                and update_date = #{updateDate}-->
+<!--            </if>-->
+<!--            <if test="cellphone != null and cellphone != ''">-->
+<!--                and cellphone = #{cellphone}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <!--新增所有列-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into patient(name, sex, age, height, weight, source, status, region_id, identity_card, crowd, update_date, cellphone)-->
+<!--        values (#{name}, #{sex}, #{age}, #{height}, #{weight}, #{source}, #{status}, #{regionId}, #{identityCard}, #{crowd}, #{updateDate}, #{cellphone})-->
+<!--    </insert>-->
+
+<!--    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into patient(name, sex, age, height, weight, source, status, region_id, identity_card, crowd, update_date, cellphone)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--        (#{entity.name}, #{entity.sex}, #{entity.age}, #{entity.height}, #{entity.weight}, #{entity.source}, #{entity.status}, #{entity.regionId}, #{entity.identityCard}, #{entity.crowd}, #{entity.updateDate}, #{entity.cellphone})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into patient(name, sex, age, height, weight, source, status, region_id, identity_card, crowd, update_date, cellphone)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--            (#{entity.name}, #{entity.sex}, #{entity.age}, #{entity.height}, #{entity.weight}, #{entity.source}, #{entity.status}, #{entity.regionId}, #{entity.identityCard}, #{entity.crowd}, #{entity.updateDate}, #{entity.cellphone})-->
+<!--        </foreach>-->
+<!--        on duplicate key update-->
+<!--        name = values(name),-->
+<!--        sex = values(sex),-->
+<!--        age = values(age),-->
+<!--        height = values(height),-->
+<!--        weight = values(weight),-->
+<!--        source = values(source),-->
+<!--        status = values(status),-->
+<!--        region_id = values(region_id),-->
+<!--        identity_card = values(identity_card),-->
+<!--        crowd = values(crowd),-->
+<!--        update_date = values(update_date),-->
+<!--        cellphone = values(cellphone)-->
+<!--    </insert>-->
+
+    <!--通过主键修改数据-->
+<!--    <update id="update">-->
+<!--        update patient-->
+<!--        <set>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                name = #{name},-->
+<!--            </if>-->
+<!--            <if test="sex != null">-->
+<!--                sex = #{sex},-->
+<!--            </if>-->
+<!--            <if test="age != null">-->
+<!--                age = #{age},-->
+<!--            </if>-->
+<!--            <if test="height != null and height != ''">-->
+<!--                height = #{height},-->
+<!--            </if>-->
+<!--            <if test="weight != null and weight != ''">-->
+<!--                weight = #{weight},-->
+<!--            </if>-->
+<!--            <if test="source != null and source != ''">-->
+<!--                source = #{source},-->
+<!--            </if>-->
+<!--            <if test="status != null">-->
+<!--                status = #{status},-->
+<!--            </if>-->
+<!--            <if test="regionId != null">-->
+<!--                region_id = #{regionId},-->
+<!--            </if>-->
+<!--            <if test="identityCard != null and identityCard != ''">-->
+<!--                identity_card = #{identityCard},-->
+<!--            </if>-->
+<!--            <if test="crowd != null">-->
+<!--                crowd = #{crowd},-->
+<!--            </if>-->
+<!--            <if test="updateDate != null">-->
+<!--                update_date = #{updateDate},-->
+<!--            </if>-->
+<!--            <if test="cellphone != null and cellphone != ''">-->
+<!--                cellphone = #{cellphone},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+    <!--通过主键删除-->
+<!--    <delete id="deleteById">-->
+<!--        delete from patient where id = #{id}-->
+<!--    </delete>-->
+
+    <resultMap type="com.myq.epidemic_sys.setting.model.dto.Patient1DTO" id="PatientPageMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="VARCHAR"/>
+        <result property="weight" column="weight" jdbcType="VARCHAR"/>
+        <result property="source" column="source" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="regionId" column="region_id" jdbcType="INTEGER"/>
+        <result property="identityCard" column="identity_card" jdbcType="VARCHAR"/>
+        <result property="crowd" column="crowd" jdbcType="INTEGER"/>
+        <result property="updateDate" column="update_date" jdbcType="TIMESTAMP"/>
+        <result property="cellphone" column="cellphone" jdbcType="VARCHAR"/>
+        <result property="regionName" column="r_name" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <select id="selectAllByPage" parameterType="com.myq.epidemic_sys.setting.entity.Patient"
+            resultMap="PatientPageMap" >
+        select p.*, r.name as r_name
+        from patient as p
+        left join region as r
+        on p.region_id = r.id
+        <where>
+            <if test="param.name != null and param.name != '' ">
+                and p.name like CONCAT('%',#{param.name},'%')
+            </if>
+            <if test="param.source != null and param.source != '' ">
+                and p.source like CONCAT('%',#{param.source},'%')
+            </if>
+            <if test="param.sex != null ">
+                and p.sex = #{param.sex}
+            </if>
+            <if test="param.status != null ">
+                and p.status = #{param.status}
+            </if>
+            <if test="param.regionId != null ">
+                and p.region_id = #{param.regionId}
+            </if>
+            <if test="param.crowd != null ">
+                and p.crowd = #{param.crowd}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="StatisticsResultMap" type="com.myq.epidemic_sys.setting.model.vo.StatisticsVO">
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="value" jdbcType="INTEGER" property="value" />
+        <result column="update_date" jdbcType="VARCHAR" property="date" />
+    </resultMap>
+    <select id="selectListByCrowdStatistics" resultMap="StatisticsResultMap">
+    select crowd as name, count(*) as value
+    from patient
+    group by crowd
+   </select>
+
+    <select id="selectListByRegionStatistics" resultMap="StatisticsResultMap">
+    select t2.name as name, count(*) as value
+    from patient t1
+    left join region t2 on t1.region_id = t2.id
+    group by region_id
+    </select>
+
+    <select id="selectListByStatusStatistics" resultMap="StatisticsResultMap">
+    select status as name, count(*) as value
+    from patient
+    group by status
+   </select>
+
+    <select id="selectListByStatusStatistics2" resultMap="StatisticsResultMap">
+    select status as name, count(*) as value, update_date
+    from patient
+    group by status, update_date
+    order by update_date desc
+    limit 7
+   </select>
+
+    <select id="selectListByDateStatistics" resultType="java.lang.String">
+    select update_date
+    from patient
+    group by update_date
+    order by update_date desc
+    limit 7
+   </select>
+</mapper>
+

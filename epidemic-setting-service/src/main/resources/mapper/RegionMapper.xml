@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myq.epidemic_sys.setting.mapper.RegionMapper">
+
+    <resultMap type="com.myq.epidemic_sys.setting.entity.Region" id="RegionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="regionCount" column="region_count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+<!--    <select id="queryById" resultMap="RegionMap">-->
+<!--        select-->
+<!--          id, name, region_count-->
+<!--        from region-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+    <!--查询指定行数据-->
+<!--    <select id="queryAllByLimit" resultMap="RegionMap">-->
+<!--        select-->
+<!--          id, name, region_count-->
+<!--        from region-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                and name = #{name}-->
+<!--            </if>-->
+<!--            <if test="regionCount != null">-->
+<!--                and region_count = #{regionCount}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        limit #{pageable.offset}, #{pageable.pageSize}-->
+<!--    </select>-->
+
+    <!--统计总行数-->
+<!--    <select id="count" resultType="java.lang.Long">-->
+<!--        select count(1)-->
+<!--        from region-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                and name = #{name}-->
+<!--            </if>-->
+<!--            <if test="regionCount != null">-->
+<!--                and region_count = #{regionCount}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <!--新增所有列-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into region(name, region_count)-->
+<!--        values (#{name}, #{regionCount})-->
+<!--    </insert>-->
+
+<!--    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into region(name, region_count)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--        (#{entity.name}, #{entity.regionCount})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into region(name, region_count)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--            (#{entity.name}, #{entity.regionCount})-->
+<!--        </foreach>-->
+<!--        on duplicate key update-->
+<!--        name = values(name),-->
+<!--        region_count = values(region_count)-->
+<!--    </insert>-->
+
+    <!--通过主键修改数据-->
+<!--    <update id="update">-->
+<!--        update region-->
+<!--        <set>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                name = #{name},-->
+<!--            </if>-->
+<!--            <if test="regionCount != null">-->
+<!--                region_count = #{regionCount},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+    <!--通过主键删除-->
+<!--    <delete id="deleteById">-->
+<!--        delete from region where id = #{id}-->
+<!--    </delete>-->
+
+    <select id="selectByPage" parameterType="com.myq.epidemic_sys.setting.entity.Region"
+            resultMap="RegionMap" >
+        select *
+        from region as r
+        <where>
+            <if test="param.name != null and param.name != '' ">
+                and r.name like CONCAT('%',#{param.name},'%')
+            </if>
+        </where>
+        order by region_count DESC
+    </select>
+
+    <resultMap id="RegionItemResultMap" type="com.myq.epidemic_sys.setting.model.dto.RegionItemDTO">
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="count" jdbcType="INTEGER" property="count" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+    </resultMap>
+    <select id="selectListByStatistics" resultMap="RegionItemResultMap">
+    SELECT t1.name, COUNT(*) as count, t2.status
+    FROM region t1
+    LEFT JOIN patient t2 ON t1.id = t2.`region_id`
+    GROUP BY t2.status, t2.region_id
+    </select>
+
+    <select id="selectAll" resultMap="RegionMap">
+        select id, r.name, region_count
+        from region as r
+        where 1 = 1
+    </select>
+</mapper>
+

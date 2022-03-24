@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myq.epidemic_sys.setting.mapper.NucleinMapper">
+
+    <resultMap type="com.myq.epidemic_sys.setting.entity.Nuclein" id="NucleinMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="patientId" column="patient_id" jdbcType="INTEGER"/>
+        <result property="nucleinDate" column="nuclein_date" jdbcType="DATE"/>
+        <result property="result" column="result" jdbcType="INTEGER"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+        <result property="tCreateTime" column="t_create_time" jdbcType="DATE"/>
+        <result property="tCreateCode" column="t_create_code" jdbcType="VARCHAR"/>
+        <result property="tUpdateTime" column="t_update_time" jdbcType="DATE"/>
+        <result property="tUpdateCode" column="t_update_code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+<!--    <select id="queryById" resultMap="NucleinMap">-->
+<!--        select-->
+<!--          id, patient_id, nuclein_date, result, remarks-->
+<!--        from nuclein-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+    <!--查询指定行数据-->
+<!--    <select id="queryAllByLimit" resultMap="NucleinMap">-->
+<!--        select-->
+<!--          id, patient_id, nuclein_date, result, remarks-->
+<!--        from nuclein-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="patientId != null">-->
+<!--                and patient_id = #{patientId}-->
+<!--            </if>-->
+<!--            <if test="nucleinDate != null">-->
+<!--                and nuclein_date = #{nucleinDate}-->
+<!--            </if>-->
+<!--            <if test="result != null">-->
+<!--                and result = #{result}-->
+<!--            </if>-->
+<!--            <if test="remarks != null and remarks != ''">-->
+<!--                and remarks = #{remarks}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--        limit #{pageable.offset}, #{pageable.pageSize}-->
+<!--    </select>-->
+
+    <!--统计总行数-->
+<!--    <select id="count" resultType="java.lang.Long">-->
+<!--        select count(1)-->
+<!--        from nuclein-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="patientId != null">-->
+<!--                and patient_id = #{patientId}-->
+<!--            </if>-->
+<!--            <if test="nucleinDate != null">-->
+<!--                and nuclein_date = #{nucleinDate}-->
+<!--            </if>-->
+<!--            <if test="result != null">-->
+<!--                and result = #{result}-->
+<!--            </if>-->
+<!--            <if test="remarks != null and remarks != ''">-->
+<!--                and remarks = #{remarks}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <!--新增所有列-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into nuclein(patient_id, nuclein_date, result, remarks)-->
+<!--        values (#{patientId}, #{nucleinDate}, #{result}, #{remarks})-->
+<!--    </insert>-->
+
+<!--    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into nuclein(patient_id, nuclein_date, result, remarks)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--        (#{entity.patientId}, #{entity.nucleinDate}, #{entity.result}, #{entity.remarks})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into nuclein(patient_id, nuclein_date, result, remarks)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--            (#{entity.patientId}, #{entity.nucleinDate}, #{entity.result}, #{entity.remarks})-->
+<!--        </foreach>-->
+<!--        on duplicate key update-->
+<!--        patient_id = values(patient_id),-->
+<!--        nuclein_date = values(nuclein_date),-->
+<!--        result = values(result),-->
+<!--        remarks = values(remarks)-->
+<!--    </insert>-->
+
+    <!--通过主键修改数据-->
+<!--    <update id="update">-->
+<!--        update nuclein-->
+<!--        <set>-->
+<!--            <if test="patientId != null">-->
+<!--                patient_id = #{patientId},-->
+<!--            </if>-->
+<!--            <if test="nucleinDate != null">-->
+<!--                nuclein_date = #{nucleinDate},-->
+<!--            </if>-->
+<!--            <if test="result != null">-->
+<!--                result = #{result},-->
+<!--            </if>-->
+<!--            <if test="remarks != null and remarks != ''">-->
+<!--                remarks = #{remarks},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+    <!--通过主键删除-->
+<!--    <delete id="deleteById">-->
+<!--        delete from nuclein where id = #{id}-->
+<!--    </delete>-->
+
+    <select id="selectByPage" parameterType="com.myq.epidemic_sys.setting.entity.Nuclein"
+            resultMap="NucleinMap" >
+        select *
+        from nuclein as n, patient as p
+        <where>
+            n.patient_id = p.id
+            <if test="param.patientId != null and param.patientId != '' ">
+                and p.id = #{param.patientId}
+            </if>
+            <if test="param.nucleinDate != null ">
+                and n.nuclein_date = #{param.nucleinDate}
+            </if>
+            <if test="param.result != null">
+                and n.result = #{param.result}
+            </if>
+            <if test="param.remarks != null and param.remarks != '' ">
+                and n.remarks like CONCAT('%',#{param.remarks},'%')
+            </if>
+        </where>
+        Order By nuclein_date DESC
+    </select>
+
+    <select id="selectByIdNuclein" parameterType="String" resultMap="NucleinMap">
+        select *
+        from nuclein as n, patient as p
+        <where>
+            n.patient_id = p.id
+            <if test="param != null and param != '' ">
+                and p.id = #{param}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
+
