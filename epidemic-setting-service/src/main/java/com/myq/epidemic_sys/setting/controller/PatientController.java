@@ -4,7 +4,9 @@ package com.myq.epidemic_sys.setting.controller;
 import com.myq.epidemic_sys.common.model.ResponseVO;
 import com.myq.epidemic_sys.setting.model.dto.PatientDTO;
 import com.myq.epidemic_sys.setting.model.dto.PatientPageDTO;
+import com.myq.epidemic_sys.setting.model.dto.ReportingDTO;
 import com.myq.epidemic_sys.setting.service.PatientService;
+import com.myq.epidemic_sys.setting.service.ReportingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,9 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private ReportingService reportingService;
 
     /**
      * @Author 毛一钦
@@ -81,6 +86,12 @@ public class PatientController {
     public ResponseVO patientDelete(String id) {
         ResponseVO vo = this.patientService.deleteOne(id);
         return vo;
+    }
+
+    @PostMapping("/patient/reporting")
+    public ResponseVO reporting(@RequestBody ReportingDTO param) {
+        this.reportingService.insert(param);
+        return ResponseVO.success(null);
     }
 
 }

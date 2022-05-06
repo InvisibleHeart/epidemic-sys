@@ -22,6 +22,12 @@ public class IndexController {
 
     private String prefix = "/user/";
 
+    // 报备
+    @RequestMapping("/reporting.html")
+    public String loginHtml() {
+        return prefix + "reporting";
+    }
+
     // 首页
     @RequestMapping("/index.html")
     public String indexHtml (Model model) {

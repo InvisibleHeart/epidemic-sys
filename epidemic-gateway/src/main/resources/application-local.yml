@@ -16,20 +16,20 @@ spring:
       discovery:
         locator:
           enabled: true
-#      globalcors:
-#        cors-configurations:    # 全局的跨网域处理
-#          '[/**]':
-#            allowCredentials: true          # 是否允许携带cookie
-#            allowedOriginPatterns: "*"      # 允许哪些网站的跨网域请求
-#            allowedHeaders: "*"             # 允许请求中携带的头信息
-#            allowedMethods:
-#              - "OPTIONS"
-#              - "GET"
-#              - "POST"
-#              - "PUT"
-#              - "DELETE"
-#            maxAge: 36000           # 跨网域检查的有效时间
-#        add-to-simple-url-handler-mapping: true   # 解决options请求被拦截问题
+      globalcors:
+        cors-configurations:    # 全局的跨网域处理
+          '[/**]':
+            allowCredentials: true          # 是否允许携带cookie
+            allowedOriginPatterns: "*"      # 允许哪些网站的跨网域请求
+            allowedHeaders: "*"             # 允许请求中携带的头信息
+            allowedMethods:
+              - "OPTIONS"
+              - "GET"
+              - "POST"
+              - "PUT"
+              - "DELETE"
+            maxAge: 36000           # 跨网域检查的有效时间
+        add-to-simple-url-handler-mapping: true   # 解决options请求被拦截问题
 
 
 

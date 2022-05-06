@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>首页</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 
@@ -36,8 +37,7 @@
         }
 
         #blogTitle {
-            /*background-image: url("/images/scenery6.jpg");*/
-            background: center center / cover no-repeat #222;
+            background: url("/images/scenery6.jpg") center center / cover no-repeat #222;
             overflow: hidden;
             width: 100%;
             height: 40vh;
@@ -128,8 +128,8 @@
 <script type="text/javascript" src="/js/template-web.js"></script>
 <script type="text/javascript" src="/layui/layui.all.js"></script>
 <script type="text/javascript" src="/js/effects/fish.js"></script>
-<script type="text/javascript" src="/js/effects/star.js"></script>
 <script type="text/javascript" src="/js/effects/three.min.js"></script>
+<script type="text/javascript" src="/js/effects/star.js"></script>
 
 </html>
 

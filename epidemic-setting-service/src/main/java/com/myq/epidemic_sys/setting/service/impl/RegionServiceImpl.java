@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -121,6 +120,21 @@ public class RegionServiceImpl extends ServiceImpl<RegionMapper, Region> impleme
         vo.setRegionItemList(regionItemDTOS);
         vo.setRegionList(regionsDTOS);
         return ResponseVO.success(vo);
+    }
+
+    @Override
+    public void increase(String name) {
+        QueryWrapper<Region> regionQueryWrapper = new QueryWrapper<>();
+        regionQueryWrapper.eq("name", name);
+        Region region = this.baseMapper.selectOne(regionQueryWrapper);
+
+        if (region != null) {
+            this.baseMapper.increase(name);
+        } else {
+            Region dto = new Region();
+            dto.setName(name);
+            this.getBaseMapper().insert(dto);
+        }
     }
 
 

@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
+    <title>EMS-主页-疫情防控,人人有责!</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
-    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<#--    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>-->
+    <script type="text/javascript" src="/js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="/js/axquery.js"></script>
     <script type="text/javascript" src="/layui/layui.all.js"></script>
 <#--    <script type="text/javascript" src="/js/echarts.js"></script>-->
@@ -52,40 +54,60 @@
                     </div>
                     <div class="layui-col-md8">
                         <div class="layui-field-box">
-                            <div id="main-0" style="width: 100%;height:600px"></div>
+                            <div class="layui-tab layui-tab-card">
+                                <ul class="layui-tab-title">
+                                    <li class="layui-this" onclick="repaint(true)">新增人数</li>
+                                    <li onclick="repaint(false)">累计新增</li>
+                                </ul>
+                                <div class="layui-tab-content" style="height: 600px;">
+                                    <div class="layui-tab-item layui-show">
+                                        <div id="main-0" style="width: 100%;height:600px"></div>
+                                    </div>
+<#--                                    <div class="layui-tab-item">-->
+<#--                                        <div id="main-0-2" style="width: 100%;height:600px"></div>-->
+<#--                                    </div>-->
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="layui-col-md4">
-                        <div class="layui-field-box">
-                            <div class="layui-card" style="background-color: #fffaf7;">
-                                <div class="layui-card-header">本土现有确诊</div>
-                                <div class="layui-card-body" id="localConfirmH5"
-                                     style="color: #e57631; font-size: 2.4vw"></div>
+                        <div class="layui-col-md12">
+                            <div class="layui-field-box">
+                                <i class="layui-icon">&#xe672;</i>
+                                <strong class="layui-bg-gray" id="boardTitle">阿里健康提供数据,统计截至 </strong>
                             </div>
-                            <div class="layui-card" style="background-color: #fff8f8;">
-                                <div class="layui-card-header">现有确诊</div>
-                                <div class="layui-card-body" id="nowConfirm"
-                                     style="color: #e61c1d; font-size: 2.4vw"></div>
-                            </div>
-                            <div class="layui-card" style="background-color: #fff4f4;">
-                                <div class="layui-card-header">累计确诊</div>
-                                <div class="layui-card-body" id="confirm"
-                                     style="color: #be2121; font-size: 2.4vw"></div>
-                            </div>
-                            <div class="layui-card" style="background-color: #fef7ff;">
-                                <div class="layui-card-header">无症状感染者</div>
-                                <div class="layui-card-body" id="noInfect"
-                                     style="color: #ae3ac6; font-size: 2.4vw"></div>
-                            </div>
-                            <div class="layui-card" style="background-color: #f1f5ff;">
-                                <div class="layui-card-header">境外输入</div>
-                                <div class="layui-card-body" id="importedCase"
-                                     style="color: #4e8be6; font-size: 2.4vw"></div>
-                            </div>
-                            <div class="layui-card" style="background-color: #c2c2c2;">
-                                <div class="layui-card-header">累计死亡</div>
-                                <div class="layui-card-body" id="dead"
-                                     style="color: #4e5a65; font-size: 2.4vw"></div>
+                            <div class="layui-field-box">
+                                <div class="layui-card" style="background-color: #D4FFC9;">
+                                    <div class="layui-card-header" id="incrCured">累计治愈</div>
+                                    <div class="layui-card-body" id="totalCured"
+                                         style="color: #2AD000; font-size: 2.4vw"></div>
+                                </div>
+                                <div class="layui-card" style="background-color: #fff8f8;">
+                                    <div class="layui-card-header" >现有确诊</div>
+                                    <div class="layui-card-body" id="currentConfirm"
+                                         style="color: #e61c1d; font-size: 2.4vw"></div>
+                                </div>
+                                <div class="layui-card" style="background-color: #fff4f4;">
+                                    <div class="layui-card-header" id="incrConfirm">累计确诊</div>
+                                    <div class="layui-card-body" id="totalConfirmed"
+                                         style="color: #be2121; font-size: 2.4vw"></div>
+                                </div>
+                                <div class="layui-card" style="background-color: #fef7ff;">
+                                    <div class="layui-card-header" id="incrHidden">无症状感染者</div>
+                                    <div class="layui-card-body" id="hidden"
+                                         style="color: #ae3ac6; font-size: 2.4vw"></div>
+                                </div>
+                                <div class="layui-card" style="background-color: #f1f5ff;">
+                                    <div class="layui-card-header" id="incrAbroadInputConfirmed">境外输入</div>
+                                    <div class="layui-card-body" id="abroadInputConfirmed"
+                                         style="color: #4e8be6; font-size: 2.4vw"></div>
+                                </div>
+                                <div class="layui-card" style="background-color: #c2c2c2;">
+                                    <div class="layui-card-header" id="incrDeath">累计死亡</div>
+                                    <div class="layui-card-body" id="totalDeath"
+                                         style="color: #4e5a65; font-size: 2.4vw"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -193,19 +215,38 @@
 </body>
 
 <script>
+    // 回到顶部
+    layui.use(['util', 'laydate', 'layer'], function(){
+        var util = layui.util
+            ,laydate = layui.laydate
+            ,$ = layui.$
+            ,layer = layui.layer;
+        //固定块
+        util.fixbar({
+            bar1: false
+            ,bar2: false
+            ,css: {right: 50, bottom: 100}
+            ,bgcolor: '#c2c2c2'
+
+        });
+    });
+
+</script>
+
+<script>
     //  全国疫情实时情况
     let myEcharts0 = echarts.init(document.getElementById('main-0'));
-    let localConfirmH5 = $("#localConfirmH5");
-    let nowConfirm = $("#nowConfirm");
-    let confirm = $("#confirm");
-    let noInfect = $("#noInfect");
-    let importedCase = $("#importedCase");
-    let dead = $("#dead");
+    let totalCured = $("#totalCured");
+    let currentConfirm = $("#currentConfirm");
+    let totalConfirmed = $("#totalConfirmed");
+    let hidden = $("#hidden");
+    let abroadInputConfirmed = $("#abroadInputConfirmed");
+    let totalDeath = $("#totalDeath");
 
-    /* 中国地图 */
+    /* 地图组件 */
     let optionMap = {
         title: {
-            text: '全国新冠肺炎实时确诊数量',
+            // text: '全国新冠肺炎实时确诊人数',
             // subtext: '最后更新于' + lastUpdateTime,
             // sublink: 'http://www.census.gov/popest/data/datasets.html',
             left: 'right'
@@ -218,7 +259,7 @@
         visualMap: {
             left: 'right',
             min: 0,
-            max: 500,
+            max: 1000,
             inRange: {
                 color: [
                     '#313695',
@@ -265,39 +306,116 @@
     };
 
     $.ajax({
-        type:"get",
-        url:"https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5",
-        dataType:"jsonp",
+        type: "GET",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8; Content-Encoding: gzip",
+        // crossDomain: true,
+        // url: "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5",
+        url: "https://cdn.mdeer.com/data/yqstaticdata.js",
+        dataType: "jsonp",
+        // scriptCharset: "UTF-8",
+        jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+        jsonpCallback:"callbackstaticdata",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+        data: "callback=?",
+        // xhrFields: {
+        //     withCredentials: true
+        // },
         async: false,
         success:function(data) {
-            let lastUpdateTime = JSON.parse(data["data"])["lastUpdateTime"];
+            let lastUpdateTime = data.country.time;
             /* 卡片展示数据 */
-            let dataTitle = JSON.parse(data.data).chinaTotal;
-
+            let dataTitle = data.country;
             /* 地图数据 */
-            let dataBefore = JSON.parse(data.data).areaTree[0];
-            let dataAfter = dataBefore.children.map(province => ({//接受到的数据进行数据格式转换...
-                name: province.name,
-                value: province.total.nowConfirm,
+            let dataBefore = data.provinceArray;
+            let dataAfter = dataBefore.map(province => ({//接受到的数据进行数据格式转换...
+                name: province.childStatistic,
+                value: province.currentConfirm,
             }));
 
-            optionMap.title.subtext = '最后更新于' + lastUpdateTime;
-            optionMap.series[0].data = dataAfter;
+            // 卡片数据回显
+            $("#boardTitle").append(dataTitle.time);
+            totalCured.append(dataTitle.totalCured);
+            $("#incrCured").append("&nbsp<span class=\"layui-badge-dot layui-bg-green\"></span>&nbsp"
+                + "<span class=\"layui-badge layui-bg-green\" >"
+                + "较昨日增加 "
+                + dataTitle.lastIncData.incrCured + "</span>");
+
+            currentConfirm.append(dataTitle.currentConfirm);
+            totalConfirmed.append(dataTitle.totalConfirmed);
+            $("#incrConfirm").append("&nbsp<span class=\"layui-badge-dot\"></span>&nbsp"
+                + "<span class=\"layui-badge\" >"
+                + "较昨日增加 "
+                + dataTitle.lastIncData.incrConfirm + "</span>");
+
+            hidden.append(dataTitle.hidden);
+            $("#incrHidden").append("&nbsp<span class=\"layui-badge-dot layui-bg-cyan\"></span>&nbsp"
+                + "<span class=\"layui-badge layui-bg-cyan\" >"
+                + "较昨日增加 "
+                + dataTitle.lastIncData.incrHidden + "</span>");
+
+            abroadInputConfirmed.append(dataTitle.abroadInputConfirmed);
+            $("#incrAbroadInputConfirmed").append("&nbsp<span class=\"layui-badge-dot layui-bg-blue\"></span>&nbsp"
+                + "<span class=\"layui-badge layui-bg-blue\" >"
+                + "较昨日增加 "
+                + dataTitle.lastIncData.incrAbroadInputConfirmed + "</span>");
+
+            totalDeath.append(dataTitle.totalDeath);
+            $("#incrDeath").append("&nbsp<span class=\"layui-badge-dot layui-bg-gray\"></span>&nbsp"
+                + "<span class=\"layui-badge layui-bg-gray\" >"
+                + "较昨日增加 "
+                + dataTitle.lastIncData.incrDeath + "</span>");
 
             // 使用刚指定的配置项和数据显示图表。
+            optionMap.title.text = "全国新冠肺炎实时确诊人数";
+            optionMap.title.subtext = '最后更新于' + lastUpdateTime;
+            optionMap.series[0].data = dataAfter;
             myEcharts0.setOption(optionMap);
-            // 卡片数据回显
-            localConfirmH5.append(dataTitle.localConfirmH5);
-            nowConfirm.append(dataTitle.nowConfirm);
-            confirm.append(dataTitle.confirm);
-            noInfect.append(dataTitle.noInfect);
-            importedCase.append(dataTitle.importedCase);
-            dead.append(dataTitle.dead);
 
         }
     });
 
+    function repaint(flag) {
+        $.ajax({
+            type: "GET",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8; Content-Encoding: gzip",
+            // crossDomain: true,
+            // url: "https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5",
+            url: "https://cdn.mdeer.com/data/yqstaticdata.js",
+            dataType: "jsonp",
+            // scriptCharset: "UTF-8",
+            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback:"callbackstaticdata",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+            data: "callback=?",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            async: true,
+            success:function(data) {
+                myEcharts0.clear();
+                let lastUpdateTime = data.country.time;
+                /* 地图数据 */
+                let dataBefore = data.provinceArray;
+                let dataAfter;
+                if (flag) {
+                    dataAfter = dataBefore.map(province => ({//接受到的数据进行数据格式转换...
+                        name: province.childStatistic,
+                        value: province.currentConfirm,
+                    }));
+                    optionMap.title.text = "全国新冠肺炎实时确诊人数";
+                } else {
+                    dataAfter = dataBefore.map(province => ({//接受到的数据进行数据格式转换...
+                        name: province.childStatistic,
+                        value: province.totalConfirmed,
+                    }));
+                    optionMap.title.text = "全国新冠肺炎累计确诊人数";
+                }
+                // 使用刚指定的配置项和数据显示图表。
+                optionMap.title.subtext = '最后更新于' + lastUpdateTime;
+                optionMap.series[0].data = dataAfter;
+                myEcharts0.setOption(optionMap);
+            }
+        });
 
+    }
 
 </script>
 
@@ -534,5 +652,20 @@
         // 使用刚指定的配置项和数据显示图表。
         myEcharts.setOption(option);
     });
+</script>
+<script>
+    /*窗口自适应，关键代码*/
+    setTimeout(function (){
+        window.onresize = function () {
+            myEcharts.resize();
+            myEcharts0.resize();
+            myEcharts1.resize();
+            myEcharts2.resize();
+            myEcharts3.resize();
+            myEcharts4.resize();
+            myEcharts5.resize();
+            myEcharts6.resize();
+        }
+    },200);
 </script>
 </html>

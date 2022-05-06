@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>个人资料</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 

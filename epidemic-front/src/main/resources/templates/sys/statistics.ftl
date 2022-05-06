@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>统计图表</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 
@@ -151,6 +152,27 @@
 <script type="text/javascript" src="/js/template-web.js"></script>
 <script type="text/javascript" src="/layui/layui.all.js"></script>
 <script type="text/javascript" src="/js/echarts.js"></script>
+
+
+<script>
+
+    // 回到顶部
+    layui.use(['util', 'laydate', 'layer'], function(){
+        var util = layui.util
+            ,laydate = layui.laydate
+            ,$ = layui.$
+            ,layer = layui.layer;
+        //固定块
+        util.fixbar({
+            bar1: false
+            ,bar2: false
+            ,css: {right: 50, bottom: 100}
+            ,bgcolor: '#c2c2c2'
+
+        });
+    });
+
+</script>
 
 <script>
     // 按人群统计

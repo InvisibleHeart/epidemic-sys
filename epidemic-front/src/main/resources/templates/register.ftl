@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>注册页面</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 </head>
@@ -85,6 +86,7 @@
             </div>
         </div>
     </div>
+</nav>
 </body>
 
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>

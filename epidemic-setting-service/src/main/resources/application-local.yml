@@ -7,9 +7,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #serverTimezone=UTC 设置数据库时区,MySQL默认安装时是使用的美国时区
-    url:
-    username:
-    password:
+    url: jdbc:mysql://139.196.55.213:33061/xxxxx?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: maoyq
+    password: myq123
     #自动往数据库建表
     #    schema:
     #      - classpath:department.sql
@@ -53,6 +53,18 @@ spring:
       # 连接超时时间（毫秒） 去链接redis服务端
       timeout: 6000
 
+  data:
+    mongodb:
+#      uri: mongodb://admin:myq123@139.196.55.213:27017/epidemic_sys
+      host: 139.196.55.213
+      port: 27017
+      database: epidemic_sys
+      username: admin
+      password: myq123
+
+logging:
+  level:
+    org.springframework.data.mongodb.core: debug
 
 # Mybatis-Plus 配置
 mybatis-plus:
@@ -102,3 +114,4 @@ feign:
     enabled: true # 支持HttpClient的开关
     max-connections: 200 # 最大连接数
     max-connections-per-route: 50 # 单个路径的最大连接数
+

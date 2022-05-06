@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>疾病预测</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 
@@ -71,26 +72,73 @@
                     <a><cite>疾病预测</cite></a>
                 </span>
             </div>
-
-
             <div class="layui-col-md12">
                 <hr>
             </div>
 
             <div class="layui-col-md12">
                 <fieldset class="layui-elem-field" style="margin-top: 20px; padding: 10px 0px;">
-                    <div class="layui-col-md12" style="align-content: center">
-                        <span class="layui-badge-dot layui-bg-cyan"></span>
-                        <strong>模拟疫情传播</strong>
-                    </div>
-                    <div class="layui-col-md8">
-                        <div class="layui-field-box">
-                            <div id="main-1" style="width: 100%;height:600px"></div>
+<#--                    <div class="layui-col-md12" style="align-content: center">-->
+<#--                        <span class="layui-badge-dot layui-bg-cyan"></span>-->
+
+<#--                    </div>-->
+                    <div class="layui-col-md2">
+                        <div class="layui-col-md12">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="layui-badge-rim">疫情传播模型</span>
+                        </div>
+                        <div class="layui-col-md12 layui-col-space5">
+                            <div class="layui-field-box">
+                                <form class="layui-form layui-form-pane"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                                    <div class="layui-form-item" pane>
+                                        <label class="layui-form-label">易感人数（正常人）</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item" pane>
+                                        <label class="layui-form-label">无症状感染者</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item" pane>
+                                        <label class="layui-form-label">新冠感染者</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item" pane>
+                                        <label class="layui-form-label">待预测天数</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <#--                                <div class="layui-form-item">-->
+                                    <#--                                    <div class="layui-input-block">-->
+                                    <#--                                        <button class="layui-btn layui-btn-sm layui-btn-radius" lay-submit lay-filter="*">立即提交</button>-->
+                                    <#--                                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary">重置</button>-->
+                                    <#--                                    </div>-->
+                                    <#--                                </div>-->
+                                    <div class="layui-col-md12">
+                                        <button class="layui-btn layui-btn-sm layui-btn-radius" lay-submit lay-filter="forecast">立即提交</button>
+                                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary">重置</button>
+                                    </div>
+                                    <#--                                <div class="layui-form-item">-->
+                                    <#--                                    <div class="layui-input-block">-->
+                                    <#--                                        <button type="reset" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary">重置</button>-->
+                                    <#--                                    </div>-->
+                                    <#--                                </div>-->
+                                    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="layui-col-md4">
-                        <div class="layui-field-box">
 
+                    <div class="layui-col-md10">
+                        <div class="layui-field-box">
+                            <div id="main-1" style="width: 100%;height:600px"></div>
                         </div>
                     </div>
                 </fieldset>
@@ -121,6 +169,7 @@
         dataType: "JSON",
         async: false,
         success: function (data) {
+            // console.log(data);
             run(data.data);
         }
 
@@ -146,7 +195,7 @@
                     type: 'filter',
                     config: {
                         and: [
-                            { dimension: 'day', gte: 1 },
+                            { dimension: 'day', gte: 2 },
                             { dimension: 'name', '=': category }
                         ]
                     }
@@ -160,7 +209,7 @@
                 endLabel: {
                     show: true,
                     formatter: function (params) {
-                        return params.value[3] + ': ' + params.value[0];
+                        return params.value[1] + ': ' + params.value[2];
                     }
                 },
                 labelLayout: {
@@ -170,14 +219,15 @@
                     focus: 'series'
                 },
                 encode: {
-                    x: 'Year',
-                    y: 'Income',
+                    x: 'day',
+                    y: 'number',
                     label: ['Category', 'Number'],
                     itemName: 'Day',
                     tooltip: ['Number']
                 }
             });
         });
+        // console.log(seriesList);
         let option = {
             animationDuration: 10000,
             dataset: [
@@ -189,6 +239,9 @@
             ],
             title: {
                 text: '新冠疫情预测模型'
+            },
+            legend: {
+                data: categorys
             },
             tooltip: {
                 order: 'valueDesc',
@@ -207,8 +260,47 @@
             series: seriesList
         };
         myEcharts1.setOption(option);
+
+        /*窗口自适应，关键代码*/
+        setTimeout(function (){
+            window.onresize = function () {
+                myEcharts1.resize();
+            }
+        },200);
+
     }
 
 </script>
+
+<script>
+
+    layui.use('form', function(){
+        let form = layui.form;
+
+        // 提交
+        form.on('submit(forecast)', function (data) {
+            layer.msg('请求成功');
+            if (data != null) {
+                $.ajax({
+                    url: "http://localhost:9090/utils/get",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify(data),
+                    async: true,
+                    success: function (data) {
+                        console.log(data);
+                        myEcharts1.clear();
+                        run(data.data);
+                    }
+
+                });
+            }
+
+        });
+
+        //各种基于事件的操作，下面会有进一步介绍
+    });
+</script>
+
 
 </html>

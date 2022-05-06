@@ -61,4 +61,6 @@ public interface RegionService extends IService<Region> {
 
     ResponseVO indexOne();
 
+    void increase(String name);
+
 }

@@ -1,5 +1,5 @@
-<div class="layui-header" style="min-width: 1200px">
-    <div class="layui-logo">
+<div class="layui-header" style="min-width: 1200px; background-color:#F56C6C;">
+    <div class="layui-logo layui-bg-orange">
         <h3>
             <strong>疫情防控后台管理</strong>
         </h3>

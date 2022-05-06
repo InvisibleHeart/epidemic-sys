@@ -8,8 +8,13 @@
                             <a href="/index.html" style="color: #ffffff;">疫情防控系统</a>
                         </h4>
                     </div>
-                    <ul class="layui-nav layui-layout-right">
-                        <li class="layui-nav-item"><a href="/login.html">后台登录</a></li>
+                    <ul class="layui-nav" style="text-align: right;">
+                        <li class="layui-nav-item">
+                            <a href="/login.html">后台登录</a>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="/reporting.html">疫情报备</a>
+                        </li>
                     </ul>
                 </div>
             </div>

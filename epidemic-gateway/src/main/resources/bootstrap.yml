@@ -10,6 +10,7 @@ spring:
       discovery:
         server-addr: 139.196.55.213:8848
         group: DEFAULT_GROUP
+#        ip: 139.196.55.213
   application:
     name: epidemic-gateway
 logging:

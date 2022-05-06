@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.myq.epidemic_sys.setting.entity.Region;
 import com.myq.epidemic_sys.setting.model.dto.RegionItemDTO;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -24,4 +25,7 @@ public interface RegionMapper extends BaseMapper<Region> {
 
     List<Region> selectAll();
 
+    Integer increase(String name);
+
+    Integer reduce(String name);
 }

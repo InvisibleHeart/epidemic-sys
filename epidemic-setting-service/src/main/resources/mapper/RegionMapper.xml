@@ -125,5 +125,27 @@
         from region as r
         where 1 = 1
     </select>
+
+    <update id="increase" parameterType="string">
+        update region
+        set region_count = region_count + 1
+        <where>
+            <if test="name != null and name != '' ">
+                and name = #{name}
+            </if>
+        </where>
+    </update>
+
+    <update id="reduce" parameterType="string">
+        update region
+        set region_count = region_count - 1
+        <where>
+            <if test="name != null and name != '' ">
+                and name = #{name}
+            </if>
+        </where>
+    </update>
+
+
 </mapper>
 

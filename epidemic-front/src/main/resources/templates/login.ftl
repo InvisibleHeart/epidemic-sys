@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>登录页面</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
+
     <style>
         body {
             margin: 0px;
             padding: 0px;
-            background-color: #eeeeee;
+            /*background-color: #eeeeee;*/
+            background-color: #FFFAFA;
         }
 
         .index {
@@ -87,13 +90,14 @@
 </head>
 <body>
 <div class="index">
-    <div class="layui-bg-green">
+    <div class="" style="background-color: #FFC0CB">
         <div class="layui-container">
-            <div class="layui-row" style="padding: 10px 0px">
-                用户登录
+            <div class="layui-row" style="padding: 20px 0px; font-size: 15px; color: white;">
+                <i class="layui-icon layui-icon-username"></i> <strong>用户登陆</strong>
             </div>
         </div>
     </div>
+
     <div class="content layui-form" style="margin-top: 50px">
         <div class="index-cont">
             <div class="index-cont-left">
@@ -154,6 +158,8 @@
 <script type="text/javascript" src="/js/axquery.js"></script>
 <script type="text/javascript" src="/layui/layui.all.js"></script>
 <script type="text/javascript" src="/js/verify.js"></script>
+<script type="text/javascript" src="/js/effects/Ribbons.js"></script>
+<#--<script type="text/javascript" src="/js/effects/Bubble.js"></script>-->
 
 <script>
     layui.use('carousel', function(){

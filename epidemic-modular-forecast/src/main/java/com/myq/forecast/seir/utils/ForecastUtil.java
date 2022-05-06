@@ -97,7 +97,7 @@ public class ForecastUtil {
 
         //  Output.INSTANCE.printSeirCSV(records, CLASSPATH + "SEIR.csv");
         List list = Output.INSTANCE.printSeirList(records);
-        System.out.println(list);
+        //  System.out.println(list);
 
 
     }
