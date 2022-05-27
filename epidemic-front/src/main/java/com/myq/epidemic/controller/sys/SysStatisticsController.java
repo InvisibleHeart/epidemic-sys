@@ -6,18 +6,17 @@ import com.myq.epidemic.common.Route;
 import com.myq.epidemic.model.vo.StatisticsInfectionDegreeVO;
 import com.myq.epidemic.model.vo.StatisticsVO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/sys/statistics")
+@RequestMapping("/pub/statistics")
 public class SysStatisticsController {
 
     private String prefix = "/sys/";

@@ -7,11 +7,10 @@ import com.myq.epidemic.entity.RegionItem;
 import com.myq.epidemic.entity.RegionTabel;
 import com.myq.epidemic.model.vo.RegionIndexVO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

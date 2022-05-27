@@ -8,14 +8,13 @@ import com.myq.epidemic.entity.Patient;
 import com.myq.epidemic.entity.Region;
 import com.myq.epidemic.model.vo.PatientPageVO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 

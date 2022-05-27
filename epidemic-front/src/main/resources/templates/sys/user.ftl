@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="any" mask="" href="/images/earth.svg">
     <title>用户管理</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
 
@@ -49,7 +50,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/sys/statistics/manage.html">
+                    <a href="/pub/statistics/manage.html">
                         <i class="layui-icon layui-icon-chart"></i>数据统计
                     </a>
                 </li>

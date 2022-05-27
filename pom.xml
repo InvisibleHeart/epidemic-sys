@@ -11,7 +11,7 @@
         <version>2.5.6</version>
     </parent>
 
-    <groupId>com.myq.epidemic_sys</groupId>
+    <groupId>com.myq.epidemic</groupId>
     <artifactId>epidemic-sys</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -23,6 +23,7 @@
         <module>epidemic-front</module>
         <module>epidemic-setting-interfaces</module>
         <module>epidemic-modular-forecast</module>
+        <module>epidemic-auth</module>
     </modules>
 
     <properties>

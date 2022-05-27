@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.myq.epidemic_sys.setting.mapper.NucleinMapper">
+<mapper namespace="com.myq.epidemic.setting.mapper.NucleinMapper">
 
-    <resultMap type="com.myq.epidemic_sys.setting.entity.Nuclein" id="NucleinMap">
+    <resultMap type="com.myq.epidemic.setting.entity.Nuclein" id="NucleinMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="patientId" column="patient_id" jdbcType="INTEGER"/>
         <result property="nucleinDate" column="nuclein_date" jdbcType="DATE"/>
@@ -122,7 +122,7 @@
 <!--        delete from nuclein where id = #{id}-->
 <!--    </delete>-->
 
-    <select id="selectByPage" parameterType="com.myq.epidemic_sys.setting.entity.Nuclein"
+    <select id="selectByPage" parameterType="com.myq.epidemic.setting.entity.Nuclein"
             resultMap="NucleinMap" >
         select *
         from nuclein as n, patient as p

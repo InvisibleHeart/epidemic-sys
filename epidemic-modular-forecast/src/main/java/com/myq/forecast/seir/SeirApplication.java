@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @Description  SEIR模型模块
  **/
 @EnableDiscoveryClient
-@EnableFeignClients(basePackages = {"com.myq.forecast.seir.*","com.myq.epidemic_sys.setting.interfaces"})
+@EnableFeignClients(basePackages = {"com.myq.forecast.seir.*", "com.myq.epidemic.setting.interfaces"})
 @SpringBootApplication
 public class SeirApplication {
 

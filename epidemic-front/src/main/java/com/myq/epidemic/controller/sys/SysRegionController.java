@@ -6,7 +6,7 @@ import com.myq.epidemic.common.Route;
 import com.myq.epidemic.entity.Region;
 import com.myq.epidemic.model.vo.RegionPageVO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

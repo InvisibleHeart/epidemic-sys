@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/sys/statistics/manage.html">
+                    <a href="/pub/statistics/manage.html">
                         <i class="layui-icon layui-icon-chart"></i>数据统计
                     </a>
                 </li>
@@ -92,26 +92,26 @@
                                     <div class="layui-form-item" pane>
                                         <label class="layui-form-label">易感人数（正常人）</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                            <input type="text" name="s" placeholder="请输入" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
                                     <div class="layui-form-item" pane>
                                         <label class="layui-form-label">无症状感染者</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                            <input type="text" name="e" placeholder="请输入" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
                                     <div class="layui-form-item" pane>
                                         <label class="layui-form-label">新冠感染者</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                            <input type="text" name="i" placeholder="请输入" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item" pane>
                                         <label class="layui-form-label">待预测天数</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                                            <input type="text" name="time" placeholder="请输入" autocomplete="off" class="layui-input">
                                         </div>
                                     </div>
 
@@ -170,13 +170,12 @@
         async: false,
         success: function (data) {
             // console.log(data);
-            run(data.data);
+            myRun(data.data);
         }
 
     });
 
-
-    function run(_rawData) {
+    function myRun(_rawData) {
 
         const categorys = [
             'Susceptible',
@@ -261,45 +260,34 @@
         };
         myEcharts1.setOption(option);
 
-        /*窗口自适应，关键代码*/
-        setTimeout(function (){
-            window.onresize = function () {
-                myEcharts1.resize();
-            }
-        },200);
-
     }
-
-</script>
-
-<script>
 
     layui.use('form', function(){
         let form = layui.form;
 
         // 提交
         form.on('submit(forecast)', function (data) {
-            layer.msg('请求成功');
-            if (data != null) {
-                $.ajax({
-                    url: "http://localhost:9090/utils/get",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: JSON.stringify(data),
-                    async: true,
-                    success: function (data) {
-                        console.log(data);
-                        myEcharts1.clear();
-                        run(data.data);
-                    }
-
-                });
-            }
-
+            myEcharts1.clear();
+            Ax.rest("/sys/forecast/get", data.field, function (data) {
+                console.log(data.data);
+                // myRun(data.data);
+                layer.msg("请求成功");
+            })
+            // url: "http://localhost:9090/utils/basic",
+            // return false;
         });
-
-        //各种基于事件的操作，下面会有进一步介绍
     });
+
+</script>
+
+<script>
+
+    /*窗口自适应，关键代码*/
+    setTimeout(function (){
+        window.onresize = function () {
+            myEcharts1.resize();
+        }
+    },200);
 </script>
 
 

@@ -13,6 +13,16 @@
     <script type="text/javascript" src="/js/echarts/echarts.min.js"></script>
     <script type="text/javascript" src="/js/echarts/vintage.js"></script>
     <script type="text/javascript" src="/js/china.js"></script>
+    <script type="text/javascript" src="/js/effects/mouse.js"></script>
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>
+        /*https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json*/
+        L2Dwidget.init({ "model": { jsonPath:
+                    "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+                "scale": 1 }, "display": { "position": "left", "width": 110, "height": 150,
+                "hOffset": 0, "vOffset": -20 }, "mobile": { "show": true, "scale": 0.5 },
+            "react": { "opacityDefault": 0.8, "opacityOnHover": 0.1 } });
+    </script>
 
     <style>
         .item {
@@ -213,7 +223,12 @@
 </nav>
 
 </body>
-
+<script type="text/javascript">
+    $.shuicheMouse({
+        type:11,
+        color: false
+    })
+</script>
 <script>
     // 回到顶部
     layui.use(['util', 'laydate', 'layer'], function(){
@@ -232,7 +247,6 @@
     });
 
 </script>
-
 <script>
     //  全国疫情实时情况
     let myEcharts0 = echarts.init(document.getElementById('main-0'));
@@ -418,12 +432,11 @@
     }
 
 </script>
-
 <script>
     // 按人群统计
     var myEcharts1 = echarts.init(document.getElementById('main-1'));
     var myEcharts2 = echarts.init(document.getElementById('main-2'));
-    Ax.rest("/sys/statistics/crowd/data", null, function (data) {
+    Ax.rest("/pub/statistics/crowd/data", null, function (data) {
         /*   饼图   */
         var option1 = {
             tooltip: {
@@ -472,12 +485,11 @@
         myEcharts2.setOption(option2);
     });
 </script>
-
 <script>
     // 按地区统计
     var myEcharts3 = echarts.init(document.getElementById('main-3'));
     var myEcharts4 = echarts.init(document.getElementById('main-4'));
-    Ax.rest("/sys/statistics/region/data", null, function (data) {
+    Ax.rest("/pub/statistics/region/data", null, function (data) {
         /*   饼图   */
         var option3 = {
             tooltip: {
@@ -526,12 +538,11 @@
         myEcharts4.setOption(option4);
     });
 </script>
-
 <script>
     // 按感染程度统计
     var myEcharts5 = echarts.init(document.getElementById('main-5'));
     var myEcharts6 = echarts.init(document.getElementById('main-6'));
-    Ax.rest("/sys/statistics/status/data", null, function (data) {
+    Ax.rest("/pub/statistics/status/data", null, function (data) {
         /*   饼图   */
         var option5 = {
             tooltip: {
@@ -580,11 +591,10 @@
         myEcharts6.setOption(option6);
     });
 </script>
-
 <script>
     // 按感染程度对比统计
     var myEcharts = echarts.init(document.getElementById('main'));
-    Ax.rest("/sys/statistics/status/data2", null, function (respData) {
+    Ax.rest("/pub/statistics/status/data2", null, function (respData) {
         /*   饼图   */
         var option = {
             title: {

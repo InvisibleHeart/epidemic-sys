@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/sys/statistics/manage.html">
+                    <a href="/pub/statistics/manage.html">
                         <i class="layui-icon layui-icon-chart"></i>数据统计
                     </a>
                 </li>

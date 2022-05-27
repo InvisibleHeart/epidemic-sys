@@ -4,20 +4,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.myq.epidemic.common.RespResult;
 import com.myq.epidemic.common.Route;
 import com.myq.epidemic.entity.Nuclein;
-import com.myq.epidemic.entity.Patient;
 import com.myq.epidemic.model.vo.NucleinPageVO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 @Controller
 @RequestMapping("/sys/nuclein")

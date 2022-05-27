@@ -5,7 +5,7 @@ import com.myq.epidemic.common.Route;
 import com.myq.epidemic.entity.Patient;
 import com.myq.epidemic.model.vo.PatientPageVO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
 import org.junit.jupiter.api.Test;
 
 public class test {

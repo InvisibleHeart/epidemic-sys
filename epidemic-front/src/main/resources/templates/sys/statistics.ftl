@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item layui-this">
-                    <a href="/sys/statistics/manage.html">
+                    <a href="/pub/statistics/manage.html">
                         <i class="layui-icon layui-icon-chart"></i>数据统计
                     </a>
                 </li>
@@ -178,7 +178,7 @@
     // 按人群统计
     var myEcharts1 = echarts.init(document.getElementById('main-1'));
     var myEcharts2 = echarts.init(document.getElementById('main-2'));
-    Ax.rest("/sys/statistics/crowd/data", null, function (data) {
+    Ax.rest("/pub/statistics/crowd/data", null, function (data) {
         /*   饼图   */
         var option1 = {
             tooltip: {
@@ -232,7 +232,7 @@
     // 按地区统计
     var myEcharts3 = echarts.init(document.getElementById('main-3'));
     var myEcharts4 = echarts.init(document.getElementById('main-4'));
-    Ax.rest("/sys/statistics/region/data", null, function (data) {
+    Ax.rest("/pub/statistics/region/data", null, function (data) {
         /*   饼图   */
         var option3 = {
             tooltip: {
@@ -286,7 +286,7 @@
     // 按感染程度统计
     var myEcharts5 = echarts.init(document.getElementById('main-5'));
     var myEcharts6 = echarts.init(document.getElementById('main-6'));
-    Ax.rest("/sys/statistics/status/data", null, function (data) {
+    Ax.rest("/pub/statistics/status/data", null, function (data) {
         /*   饼图   */
         var option5 = {
             tooltip: {
@@ -339,7 +339,7 @@
 <script>
     // 按感染程度对比统计
     var myEcharts = echarts.init(document.getElementById('main'));
-    Ax.rest("/sys/statistics/status/data2", null, function (respData) {
+    Ax.rest("/pub/statistics/status/data2", null, function (respData) {
         /*   饼图   */
         var option = {
             title: {

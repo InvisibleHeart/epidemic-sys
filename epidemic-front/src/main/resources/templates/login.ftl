@@ -125,14 +125,14 @@
                     <div class="layui-form-item" style="padding-right: 50px">
                         <label class="layui-form-label">用户名</label>
                         <div class="layui-input-block">
-                            <input type="text" name="username" required lay-verify="required"
+                            <input type="text" name="userName" required lay-verify="required"
                                    placeholder="请输入用户名" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item" style="padding-right: 50px">
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-block">
-                            <input type="password" name="password" required lay-verify="required"
+                            <input type="password" name="passWord" required lay-verify="required"
                                    placeholder="请输入密码" autocomplete="off" class="layui-input">
                         </div>
                     </div>

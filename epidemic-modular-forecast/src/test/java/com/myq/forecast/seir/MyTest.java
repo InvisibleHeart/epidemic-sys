@@ -1,6 +1,6 @@
 package com.myq.forecast.seir;
 
-import com.myq.epidemic_sys.setting.interfaces.SimulationInterface;
+import com.myq.epidemic.setting.interfaces.SimulationInterface;
 import com.myq.forecast.seir.utils.ForecastUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

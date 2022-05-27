@@ -1,15 +1,14 @@
 package com.myq.forecast.seir.utils;
 
-import com.myq.epidemic_sys.common.model.dto.ParamDTO;
+import com.myq.epidemic.common.model.dto.ParamDTO;
 import com.myq.forecast.seir.io.Output;
 import com.myq.forecast.seir.io.PropertiesReader;
 import com.myq.forecast.seir.ode.OdeProperties;
 import com.myq.forecast.seir.population.SeirRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -152,14 +151,15 @@ public class ForecastUtil {
             t0 = param.getT0();
             tMax = param.getTMax();
 
-            props = new OdeProperties(param.getGamma(),
-                    param.getSigma(),
-                    param.getBeta(),
-                    param.getMu(),
-                    param.getNu());
+//            props = new OdeProperties(param.getGamma(),
+//                    param.getSigma(),
+//                    param.getBeta(),
+//                    param.getMu(),
+//                    param.getNu());
 
             population = new SeirRecord(t0, param.getN(), param.getS(), param.getE(), param.getI(), 0);
-
+            //  初始化结果集
+            records = new HashMap<>();
         }
 
         //  LOGGER.info(CLASSPATH);

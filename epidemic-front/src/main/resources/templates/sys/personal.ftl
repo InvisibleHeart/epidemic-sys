@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/sys/statistics/manage.html">
+                    <a href="/pub/statistics/manage.html">
                         <i class="layui-icon layui-icon-chart"></i>数据统计
                     </a>
                 </li>
@@ -96,7 +96,7 @@
                     <div class="layui-form-item" style="display: none">
                         <label class="layui-form-label">id</label>
                         <div class="layui-input-block">
-                            <input type="text" name="id" value="${user.id?c}" required lay-verify="required"
+                            <input type="text" name="id" value="${user.id}" required lay-verify="required"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -104,22 +104,22 @@
                         <label class="layui-form-label">用户名</label>
                         <div class="layui-input-block">
                             <input type="text" name="username" style="cursor: not-allowed"
-                                   value="${user.username}"
+                                   value="<@shiro.principal/>"
                                    disabled autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-block">
-                            <input type="text" name="password" value="${user.password}"
-                                   required lay-verify="required" placeholder="请输入密码" autocomplete="off"
+                            <input type="text" name="password" value=""
+                                   required lay-verify="" placeholder="*********" autocomplete="off"
                                    class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">昵称</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" value="${user.name!''}"
+                            <input type="text" name="name" value="${user.name}"
                                    required lay-verify="required" placeholder="请输入昵称"
                                    autocomplete="off"
                                    class="layui-input">
@@ -128,19 +128,17 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">性别</label>
                         <div class="layui-input-block">
-                            <#if user.sex>
-                                <input type="radio" name="sex" value="true" title="男" checked>
-                                <input type="radio" name="sex" value="false" title="女">
-                            <#else>
-                                <input type="radio" name="sex" value="true" title="男">
-                                <input type="radio" name="sex" value="false" title="女" checked>
-                            </#if>
+                            <select name="sex" lay-verify="">
+                                <option disabled>${user.sex}</option>
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">邮箱</label>
                         <div class="layui-input-block">
-                            <input type="text" name="email" value="${user.email!''}"
+                            <input type="text" name="email" value="${user.email}"
                                    required lay-verify="required|email" placeholder="请输入邮箱"
                                    autocomplete="off"
                                    class="layui-input">
@@ -149,7 +147,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">手机号</label>
                         <div class="layui-input-block">
-                            <input type="text" name="cellphone" value="${user.cellphone!''}"
+                            <input type="text" name="cellphone" value="${user.cellphone}"
                                    required lay-verify="required|phone" placeholder="请输入手机号"
                                    autocomplete="off" class="layui-input">
                         </div>
@@ -192,4 +190,17 @@
 
     });
 </script>
+
+<#--<script>-->
+<#--    $.ajax({-->
+<#--        type: "GET",-->
+<#--        url: "http://localhost:9090/setting/user/info/" + username,-->
+<#--        dataType: "json",-->
+<#--        async: false,-->
+<#--        success:function(data) {-->
+<#--            console.log(data)-->
+<#--        }-->
+<#--    });-->
+
+<#--</script>-->
 </html>

@@ -3,15 +3,29 @@ package com.myq.epidemic.controller.sys;
 import com.alibaba.fastjson.JSONObject;
 import com.myq.epidemic.common.RespResult;
 import com.myq.epidemic.common.Route;
+import com.myq.epidemic.constant.SessionConstant;
 import com.myq.epidemic.entity.User;
 import com.myq.epidemic.model.vo.UserPageVO;
+import com.myq.epidemic.model.vo.UserVO;
+import com.myq.epidemic.setting.interfaces.UserInformationInterface;
+import com.myq.epidemic.setting.model.dto.TokenDTO;
+import com.myq.epidemic.setting.model.dto.UserDTO;
 import com.myq.epidemic.utils.HttpClientUtil;
-import com.myq.epidemic_sys.common.model.ResponseVO;
+import com.myq.epidemic.common.model.ResponseVO;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -19,6 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;;
 public class SysUserController {
 
     private String prefix = "/sys/";
+
+    @Autowired
+    private UserInformationInterface userInformationInterface;
 
     // 用户管理
     @RequestMapping("/manage.html")
@@ -110,20 +127,30 @@ public class SysUserController {
 
     // 个人资料
     @RequestMapping("/personal.html")
-    public String personalHtml () {
-        return prefix + "personal";
+    public ModelAndView personalHtml () {
+        ResponseVO<TokenDTO> vo = this.userInformationInterface
+                .userSelectInfo(String.valueOf(SecurityUtils.getSubject().getPrincipal()));
+        ModelAndView vm = new ModelAndView();
+        UserVO result = new UserVO();
+        BeanUtils.copyProperties(vo.getData(), result);
+        result.setSex((vo.getData().getSex() == 0) ? "女":"男");
+        vm.addObject("user", result);
+        vm.setViewName(prefix + "personal");
+        return vm;
     }
 
-//    // 修改个人资料
-//    @ResponseBody
-//    @RequestMapping("/edit/personal")
-//    public RespResult editPersonal(@RequestBody User user, HttpSession session) {
-//        userMapper.updateByPrimaryKeySelective(user);
-//        // 更新 session
-//        User u = userMapper.selectByPrimaryKey(user.getId());
-//        session.removeAttribute(SessionConstant.KEY_USER);
-//        session.setAttribute(SessionConstant.KEY_USER, u);
-//        return new RespResult();
-//    }
+    // 修改个人资料
+    @ResponseBody
+    @RequestMapping("/edit/personal")
+    public RespResult editPersonal(@RequestBody User user) {
+        RespResult respResult = new RespResult();
+        UserDTO dto = new UserDTO();
+        BeanUtils.copyProperties(user, dto);
+        ResponseVO vo = this.userInformationInterface.userEdit(dto);
+        //  退出登陆
+        SecurityUtils.getSubject().logout();
+        respResult.setErrorMessage(vo.getMessage());
+        return respResult;
+    }
 
 }
